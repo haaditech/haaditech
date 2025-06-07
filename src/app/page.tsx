@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-type CountdownItemProps = {
-  value: number;
-  label: string;
-};
+
 export default function Home() {
   const calculateTimeLeft = () => {
     const countDownDate = new Date("June 30, 2025 00:00:00").getTime();
