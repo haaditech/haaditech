@@ -1,7 +1,4 @@
 "use client";
-
-import Image from "next/image";
-
 import React, { useEffect, useState } from "react";
 type CountdownItemProps = {
   value: number;
@@ -41,7 +38,7 @@ export default function Home() {
     <>
 
       <section className="h-screen bg-gray-800 py-20">
-        <div class="grid grid-flow-col md:grid-flow-row ...">
+        <div className="grid grid-flow-col md:grid-flow-row ...">
           <h1>Haaditech</h1>
         </div>
         <div className="max-w-5xl mx-auto px-6 lg:px-8 flex flex-col items-center justify-center text-center">
