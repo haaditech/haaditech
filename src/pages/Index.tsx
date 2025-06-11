@@ -17,10 +17,11 @@ const Index = () => {
 
       <div className="relative z-10 container mx-auto px-4 py-16 min-h-screen flex flex-col justify-center">
         {/* Main content */}
+
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm text-primary mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 mr-2" />
-            Something amazing is coming
+          <div className="inline-flex items-center  rounded-full text-sm text-primary mb-8 animate-fade-in">
+            <img src="public/finalone.png" width="200px" ></img>
+
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6 animate-fade-in gradient-text">
