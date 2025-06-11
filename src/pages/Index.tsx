@@ -20,7 +20,7 @@ const Index = () => {
 
         <div className="text-center mb-16">
           <div className="inline-flex items-center  rounded-full text-sm text-primary mb-8 animate-fade-in">
-            <img src="public/finalone.png" width="200px" ></img>
+            <img src="../finalone.png" width="200px" ></img>
 
           </div>
 
