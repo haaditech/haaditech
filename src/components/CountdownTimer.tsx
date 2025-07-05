@@ -24,7 +24,6 @@ const CountdownTimer = () => {
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate.getTime() - now;
-
       if (distance > 0) {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
@@ -39,10 +38,10 @@ const CountdownTimer = () => {
   }, [targetDate]);
 
   const timeUnits = [
-    { label: 'Days', value: timeLeft.days },
-    { label: 'Hours', value: timeLeft.hours },
-    { label: 'Minutes', value: timeLeft.minutes },
-    { label: 'Seconds', value: timeLeft.seconds },
+    { label: 'Days', value: 59 },
+//     { label: 'Hours', value: timeLeft.hours },
+//     { label: 'Minutes', value: timeLeft.minutes },
+//     { label: 'Seconds', value: timeLeft.seconds },
   ];
 
   return (

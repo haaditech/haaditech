@@ -61,9 +61,28 @@ const Index = () => {
             <h2 className="text-2xl md:text-3xl font-semibold text-white">
               Launch Countdown
             </h2>
-            <CountdownTimer />
+            <CountdownTimer/>
           </div>
 
+          <div className="space-y-4">
+            <h2 className="text-2xl md:text-3xl font-semibold text-white">
+              Launch Date
+            </h2>
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+      
+              <div
+                key={29}
+                className="flex flex-col items-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 min-w-[80px] animate-bounce-gentle"
+                style={{ animationDelay: `${0 * 0.2}s` }}
+              >
+                <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  {"Sep 4, 2025".toString().padStart(2, '0')}
+                </div>
+                
+              </div>
+          
+          </div>
+          </div>
           {/* Email subscription */}
           <div className="space-y-6 pt-8">
             <h3 className="text-xl font-medium text-white">
