@@ -19,10 +19,19 @@ const EmailSubscription = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   
-  const [verifyOtp, setVerifyOtp] = useState(true);
+  const [verifyOtp, setVerifyOtp] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  
 
   const { toast } = useToast();
 
+  const resetScreen = (statusFromOtpVerificationScreen) => {
+    setVerifyOtp(statusFromOtpVerificationScreen);
+    setEmail('');
+    setPhone('');
+    setSubscriberName('');
+    
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -46,6 +55,7 @@ const EmailSubscription = () => {
     }
 
     setIsSubmitting(true);
+    
     axios.post("https://web.sohalbrothers.in/subscribe",{
       subscriberEmailAddress: email,
       subscriberName: subscriberName,
@@ -76,6 +86,22 @@ const EmailSubscription = () => {
     }
     if(response.data.data.validationMessage == null && response.data.message == "Subscription success."){
       return true;
+    }
+    if(response.data.message == "Pending verification"){
+      setVerifyOtp(true);
+      toast({
+        title: "We got you already." ,
+        description: "Email "+response.data.data.subscriberEmailAddress+" already exists.\n You might have received an OTP for verification.\n If you have lost the OTP then please wait for 24 hours to re-register your email.",
+        variant: "destructive",
+      });
+    }
+    if(response.data.message == "already exists."){
+    
+      toast({
+        title: "We got you already." ,
+        description: "Email "+response.data.data.subscriberEmailAddress+" already exists.\n You will be notified on the launch date.",
+        variant: "destructive",
+      });
     }
   }
 
@@ -129,7 +155,7 @@ const EmailSubscription = () => {
         Be the first to know when we launch. No spam, unsubscribe anytime.
       </p>
     </div>}
-    {verifyOtp && <OTPVerfication email={email}/> }
+    {verifyOtp && <OTPVerfication email={email} resetScreen={resetScreen}/> }
     </>
   );
 };

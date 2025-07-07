@@ -9,9 +9,10 @@ import { render } from 'react-dom';
 
 interface VerificationData{
     email: String,
+    resetScreen: () => void
 }
 
-const OTPVerification = ({email}: VerificationData) => {
+const OTPVerification = ({email,resetScreen}: VerificationData) => {
 
     const [otp, setOtp] = useState('');
     
@@ -29,9 +30,21 @@ const OTPVerification = ({email}: VerificationData) => {
           (response)=>{
             console.log(response);
             if(response.data.message == "Verified"){
+              setOtp('');
               setIsVerifying(false);
+              toast({
+                title: "Verification Completed",
+                description: "Email verified.",
+                variant: "default",
+              });
+              resetScreen(false);
             }else if(response.data.message == "INCORRECT"){
-              setIsVerifying(true);
+              setIsVerifying(false);
+              toast({
+                title: "Verification Failed",
+                description: "Invalid OTP.",
+                variant: "destructive",
+              });
             }
           },
           (error)=>{
