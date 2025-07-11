@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface TimeLeft {
   days: number;
@@ -8,40 +7,57 @@ interface TimeLeft {
   seconds: number;
 }
 
-const CountdownTimer = () => {
-  // Set launch date to 30 days from now (you can customize this)
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 30);
+interface CountdownTimerProps {
+  timeLeft_Server: TimeLeft;
+}
 
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+const CountdownTimer = ({ timeLeft_Server }: CountdownTimerProps) => {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(timeLeft_Server);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        });
-      }
+    timerRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        let { days, hours, minutes, seconds } = prev;
+
+        if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+          if (timerRef.current) clearInterval(timerRef.current);
+          return prev;
+        }
+
+        if (seconds > 0) {
+          seconds--;
+        } else {
+          seconds = 59;
+          if (minutes > 0) {
+            minutes--;
+          } else {
+            minutes = 59;
+            if (hours > 0) {
+              hours--;
+            } else {
+              hours = 23;
+              if (days > 0) {
+                days--;
+              }
+            }
+          }
+        }
+
+        return { days, hours, minutes, seconds };
+      });
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [targetDate]);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
 
   const timeUnits = [
-    { label: 'Days', value: 56 },
-//     { label: 'Hours', value: timeLeft.hours },
-//     { label: 'Minutes', value: timeLeft.minutes },
-//     { label: 'Seconds', value: timeLeft.seconds },
+    { label: 'Days', value: timeLeft.days },   // Fix: this was wrong before
+    { label: 'Hours', value: timeLeft.hours },
+    { label: 'Minutes', value: timeLeft.minutes },
+    { label: 'Seconds', value: timeLeft.seconds },
   ];
 
   return (
