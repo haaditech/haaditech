@@ -1,11 +1,39 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import CountdownTimer from '@/components/CountdownTimer';
 import EmailSubscription from '@/components/EmailSubscription';
 import SocialLinks from '@/components/SocialLinks';
 import { Rocket, Star, Zap } from 'lucide-react';
+import axios from 'axios'
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
 
 const Index = () => {
+const timeLeft : TimeLeft ={
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0
+};
+  useEffect(() =>{
+    // get Time left from server
+    axios.get("https://dev.sohalbrothers.in/get-day-left")
+    .then((response) =>{
+      console.log(response);
+      timeLeft.days = response.data.DAYS;
+      timeLeft.hours = response.data.HOURS; 
+      timeLeft.minutes = response.data.MINUTES; 
+      timeLeft.seconds = response.data.SECONDS; 
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }),[];
   return (
     <div className="min-h-screen bg-coming-soon relative overflow-hidden">
       {/* Animated background elements */}
@@ -61,7 +89,8 @@ const Index = () => {
             <h2 className="text-2xl md:text-3xl font-semibold text-white">
               Launch Countdown
             </h2>
-            <CountdownTimer/>
+            
+            <CountdownTimer timeLeft_Server ={timeLeft}/>
           </div>
 
           <div className="space-y-4">
