@@ -38,7 +38,7 @@ const CountdownTimer = () => {
   }, [targetDate]);
 
   const timeUnits = [
-    { label: 'Days', value: 59 },
+    { label: 'Days', value: 56 },
 //     { label: 'Hours', value: timeLeft.hours },
 //     { label: 'Minutes', value: timeLeft.minutes },
 //     { label: 'Seconds', value: timeLeft.seconds },
