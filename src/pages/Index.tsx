@@ -22,7 +22,7 @@ const timeLeft : TimeLeft ={
 };
   useEffect(() =>{
     // get Time left from server
-    axios.get("https://web.sohalBrothers.in/get-day-left")
+    axios.get("https://dev.sohalbrothers.in/get-day-left")
     .then((response) =>{
       console.log(response);
       timeLeft.days = response.data.DAYS;
