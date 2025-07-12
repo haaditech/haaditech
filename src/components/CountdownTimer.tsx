@@ -55,10 +55,12 @@ const CountdownTimer = ({ timeLeft_Server }: CountdownTimerProps) => {
   }, []);
 
   const timeUnits = [
+
     { label: 'Days', value: timeLeft.days },   // Fix: this was wrong before
     { label: 'Hours', value: timeLeft.hours },
     { label: 'Minutes', value: timeLeft.minutes },
     { label: 'Seconds', value: timeLeft.seconds },
+
   ];
 
   return (
