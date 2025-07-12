@@ -23,7 +23,7 @@ const OTPVerification = ({email,resetScreen}: VerificationData) => {
     const handleVerify = async (e: React.FormEvent) =>{
         e.preventDefault();
         setIsVerifying(true);
-        axios.post("https://web.sohalbrothers.in/verify",{
+        axios.post("https://dev.sohalbrothers.in/verify",{
             subscriberEmailAddress: email,
             otp: otp ,
         }).then(

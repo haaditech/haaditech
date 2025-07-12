@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
@@ -56,14 +56,19 @@ const EmailSubscription = () => {
 
     setIsSubmitting(true);
     
-    axios.post("https://web.sohalbrothers.in/subscribe",{
+    axios.post("https://dev.sohalbrothers.in/subscribe",{
       subscriberEmailAddress: email,
       subscriberName: subscriberName,
       subscriberPhone: phone,
     })
     .then((response) => {
       if(parseResponse(response)){
-        setVerifyOtp(true);
+       // setVerifyOtp(true);
+       toast({
+        title: "We got you." ,
+        description: "We now have your email with us. You will get notification at your email "+response.data.data.subscriberEmailAddress+".",
+        variant: "destructive",
+      });
       }else{
         // show validation error messages
         
@@ -88,10 +93,10 @@ const EmailSubscription = () => {
       return true;
     }
     if(response.data.message == "Pending verification"){
-      setVerifyOtp(true);
+     // setVerifyOtp(true);
       toast({
-        title: "We got you already." ,
-        description: "Email "+response.data.data.subscriberEmailAddress+" already exists.\n You might have received an OTP for verification.\n If you have lost the OTP then please wait for 24 hours to re-register your email.",
+        title: "We got you." ,
+        description: "Email "+response.data.data.subscriberEmailAddress+" already exists.\n You will be notified on the launch date.",
         variant: "destructive",
       });
     }
