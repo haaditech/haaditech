@@ -28,6 +28,7 @@ const CountdownTimer = ({ timeLeft_Server }: CountdownTimerProps) => {
         if (seconds > 0) {
           seconds--;
         } else {
+          window.location.reload();
           seconds = 59;
           if (minutes > 0) {
             minutes--;
