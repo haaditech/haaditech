@@ -166,20 +166,28 @@ export default function MainPage() {
 
                         <div className="hidden md:flex w-1/2 grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div className="p-6 text-center col-span-0">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-facebook  top-0 left-1 text-5xl text-[#0866ff]"></i>
-                                </span>
+                                <a href="https://www.facebook.com/haaditechpvtltd/" target='_blank'>
+                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-facebook  top-0 left-1 text-5xl text-[#0866ff]"></i>
+                                    </span>
+                                </a>
                             </div>
                             <div className="p-6 text-center">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-linkedin  top-0 left-1 text-5xl text-[#0073b2]"></i>
-                                </span>
+                                <a href="https://www.linkedin.com/in/haaditech/" target='_blank'>
+                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-linkedin  top-0 left-1 text-5xl text-[#0073b2]"></i>
+                                    </span>
+                                </a>
                             </div>
                             <div className="p-6 text-center">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-instagram  top-0 left-1 text-5xl text-[#fe1984]"></i>
-                                </span>
+                                <a href="https://www.instagram.com/haaditech.pvt.ltd/" target='_blank'>
+                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-instagram  top-0 left-1 text-5xl text-[#fe1984]"></i>
+                                    </span>
+                                </a>
                             </div>
                             <div className="p-6 text-center">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-whatsapp  top-0 left-1 text-5xl text-[#25d366]"></i>
-                                </span>
+                                <a href="#" target='_blank'>
+                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-whatsapp  top-0 left-1 text-5xl text-[#25d366]"></i>
+                                    </span>
+                                </a>
                             </div>
                         </div>
 
