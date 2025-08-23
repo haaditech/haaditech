@@ -8,6 +8,11 @@ export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("home"); // Track active nav item
 
+   const setDrawerState = (val) => {
+    setIsOpen(val); // Close drawer after navigation (on mobile)
+    document.getElementById('home').style.opacity=val?0.1:1
+  };
+
   // Function to scroll to a section by ID
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -15,7 +20,7 @@ export default function MainPage() {
       section.scrollIntoView({ behavior: "smooth" });
     }
     setActive(id);
-    setIsOpen(false); // Close drawer after navigation (on mobile)
+    setDrawerState(false); // Close drawer after navigation (on mobile)
   };
 
   const navItems = [
@@ -69,14 +74,14 @@ export default function MainPage() {
 
         {/* Mobile Hamburger Menu */}
         <div className="md:hidden">
-          {isOpen ? <button onClick={() => setIsOpen(false)}>
+          {isOpen ? <button onClick={() => setDrawerState(false)}>
             <i className="mdi mdi-close text-4xl text-[#004a8f]"></i>
           </button> :
 
             <button
               type="button"
               aria-label="Open Menu"
-              onClick={() => setIsOpen(true)}
+              onClick={() => setDrawerState(true)}
             >
               <i className="mdi mdi-menu text-4xl text-[#004a8f] w-8 h-8" />
             </button>}
@@ -86,7 +91,7 @@ export default function MainPage() {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-20 right-0 h-full w-full bg-[#004a8f] shadow-lg z-50 
+        className={`fixed top-20 right-0 h-full w-80 bg-[#004a8f] bg-opacity-1 shadow-lg z-50 
     transform transition-transform duration-300 
     ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
@@ -96,7 +101,7 @@ export default function MainPage() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`w-full text-left ${active === item.id
+              className={`w-full text-2xl text-left ${active === item.id
                   ? "border-b-2 border-white text-white"
                   : "hover:text-[#003366]"
                 }`}

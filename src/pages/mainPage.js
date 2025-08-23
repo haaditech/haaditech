@@ -26,7 +26,7 @@ export default function MainPage() {
         }
     };
     return (
-        <div className='container' id="home">
+        <div className='container'>
             <CommonHeader />
 
             <div className='items-center justify-center min-h-screen ' id="home">
