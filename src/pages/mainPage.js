@@ -80,6 +80,7 @@ export default function MainPage() {
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">User Experince</h3>
+                                {/* eslint-disable-next-line react/no-unescaped-entities */}
                                 <p className="text-gray-600 text-sm">Whether you're launching a startup, modernizing an existing platform, or building a cross-platform mobile application, our expert team is here to turn your vision into reality.</p>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
