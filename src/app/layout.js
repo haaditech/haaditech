@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body>
+      <body className="justify-center flex">
         <AOSInit /> {/* Inject AOS initialization here */}
         {children}
       </body>
