@@ -1,10 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import HadiTechLogo from "./../../public/haditechlogo.svg";
-import TagLogo from "./../../public/Name_Tag_Combined.svg";
 
-export default function MainPage() {
+export default function CommonHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("home"); // Track active nav item
 
@@ -41,13 +39,13 @@ export default function MainPage() {
           <Image
             className="h-12 w-auto"
             priority
-            src={HadiTechLogo}
+            src="/haditechlogo.svg"
             alt="Logo of Haadi Tech"
           />
           <Image
             className="h-12 w-auto ml-4 pt-1"
             priority
-            src={TagLogo}
+            src="/Name_Tag_Combined.svg"
             alt="Tagline Logo"
           />
         </div>

@@ -1,8 +1,8 @@
 "use client";
-import Image from 'next/image';
-import HadiTechLogo from "./../../public/haditechlogo.svg"
-import CommonHeader from '@/components/CommonHeader'
+import Image from "next/image";
 import { useEffect } from "react";
+import CommonHeader from "../components/CommonHeader";
+
 export default function MainPage() {
     useEffect(() => {
         const button = document.getElementById("scroll-down-btn");
@@ -27,7 +27,7 @@ export default function MainPage() {
     };
     return (
         <div className='container'>
-            <CommonHeader />
+            <CommonHeader/>
 
             <div className='items-center justify-center min-h-screen ' id="home">
 
@@ -51,7 +51,7 @@ export default function MainPage() {
                     </div>
                     <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 z-40" id="work">
 
-                        <button id="scroll-down-btn"  onClick={() => scrollToSection('work')} type="button" className="animate-bounce cursor-pointer flex items-center gap-x-1 font-bold bg-gray-300  text-[#004a8f] w-15 h-15 rounded-4xl  text-center justify-center text-lg" aria-expanded="false">
+                        <button id="scroll-down-btn" onClick={() => scrollToSection('work')} type="button" className="animate-bounce cursor-pointer flex items-center gap-x-1 font-bold bg-gray-300  text-[#004a8f] w-15 h-15 rounded-4xl  text-center justify-center text-lg" aria-expanded="false">
                             <i className="mdi mdi-arrow-down text-4xl"></i>
                         </button>
                     </div>
@@ -76,7 +76,7 @@ export default function MainPage() {
                     <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 text-center lg:max-w-none pa-5 opacity-[0.9]">
                         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:[grid-rows-4] pb-5 gap-4 flex justify-center">
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-account-group top-0 left-1 text-5xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-account-group top-0 left-1 text-5xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">User Experince</h3>
@@ -84,21 +84,21 @@ export default function MainPage() {
                                 <p className="text-gray-600 text-sm">Whether you're launching a startup, modernizing an existing platform, or building a cross-platform mobile application, our expert team is here to turn your vision into reality.</p>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-monitor-cellphone-star top-0 left-1 text-5xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-monitor-cellphone-star top-0 left-1 text-5xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">Development</h3>
                                 <p className="text-gray-600 text-sm">Our core services include custom website development and the creation of powerful web applications tailored for Android, iOS, and web platforms.</p>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-finance top-0 left-1 text-5xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-finance top-0 left-1 text-5xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">Scalability</h3>
                                 <p className="text-gray-600 text-sm">With a strong focus on performance, scalability, and user experience, we deliver end-to-end solutions that are both visually compelling and functionally robust.</p>
                             </div>
                             <div id="services" className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-account-lock-outline  top-0 left-1 text-5xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-account-lock-outline  top-0 left-1 text-5xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">Security</h3>
@@ -117,25 +117,25 @@ export default function MainPage() {
                     <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 text-center lg:max-w-none pa-5 opacity-[0.9]">
                         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:[grid-rows-4] gap-4 flex justify-center lg:justify-start pb-5">
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">Web Development</h3>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">App Development</h3>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-speedometer top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-speedometer top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">SEO</h3>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-account-box-outline  top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-account-box-outline  top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">IT Consultancy</h3>
@@ -149,7 +149,7 @@ export default function MainPage() {
                     <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 flex justify-center lg:justify-start lg:max-w-none pa-5 opacity-[0.9]">
                         <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:[grid-rows-4] gap-6 pb-5">
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 text-6xl text-[#004a8f]"></i>
                                 </span>
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">App Development</h3>
                                 <ul className="space-y-2">
@@ -160,7 +160,7 @@ export default function MainPage() {
                                 </ul>
                             </div>
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">Website Development</h3>
                                 <ul className="space-y-2">
@@ -218,7 +218,7 @@ export default function MainPage() {
 
                         <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:[grid-rows-4] gap-6 pb-5">
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-speedometer top-0 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-speedometer top-0 text-6xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">Website SEO</h3>
@@ -238,7 +238,7 @@ export default function MainPage() {
                             </div>
 
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">Website Development</h3>
                                 <ul className="space-y-2">
@@ -263,7 +263,7 @@ export default function MainPage() {
                             </div>
 
                             <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 left-1 text-6xl text-[#004a8f]"></i>
+                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 left-1 text-6xl text-[#004a8f]"></i>
                                 </span>
 
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">App Development</h3>
@@ -291,7 +291,7 @@ export default function MainPage() {
                             <div className="flex flex-cols-2 space-x-5">
                                 <Image className="h-12 w-auto"
                                     priority
-                                    src={HadiTechLogo}
+                                    src="/haditechlogo.svg"   // ✅ Correct usage with public folder
                                     alt="Logo of Haadi Tech"
                                 />
                                 {/* <h4 className="ml-3 text-base/7 font-semibold text-[#004a8f] sm:text-1xl">THINK THE UNTHINKABLE</h4> */}
@@ -307,25 +307,25 @@ export default function MainPage() {
                         <div className="hidden md:flex w-full justify-end grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div className="p-6 text-center col-span-0">
                                 <a href="https://www.facebook.com/haaditechpvtltd/" target='_blank'>
-                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-facebook  top-0 left-1 text-5xl text-[#0866ff]"></i>
+                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-facebook  top-0 left-1 text-5xl text-[#0866ff]"></i>
                                     </span>
                                 </a>
                             </div>
                             <div className="p-6 text-center">
                                 <a href="https://www.linkedin.com/in/haaditech/" target='_blank'>
-                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-linkedin  top-0 left-1 text-5xl text-[#0073b2]"></i>
+                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-linkedin  top-0 left-1 text-5xl text-[#0073b2]"></i>
                                     </span>
                                 </a>
                             </div>
                             <div className="p-6 text-center">
                                 <a href="https://www.instagram.com/haaditech.pvt.ltd/" target='_blank'>
-                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-instagram  top-0 left-1 text-5xl text-[#fe1984]"></i>
+                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-instagram  top-0 left-1 text-5xl text-[#fe1984]"></i>
                                     </span>
                                 </a>
                             </div>
                             <div className="p-6 text-center">
                                 <a href="#" target='_blank'>
-                                    <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-whatsapp  top-0 left-1 text-5xl text-[#25d366]"></i>
+                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-whatsapp  top-0 left-1 text-5xl text-[#25d366]"></i>
                                     </span>
                                 </a>
                             </div>
