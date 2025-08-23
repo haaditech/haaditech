@@ -303,7 +303,7 @@ export default function MainPage() {
                             {/* <p className="text-[#004a8f]">2025 © HaadiTech</p> */}
                         </div>
 
-                        <div className="hidden md:flex w-1/2 grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div className="hidden md:flex w-full justify-end grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div className="p-6 text-center col-span-0">
                                 <a href="https://www.facebook.com/haaditechpvtltd/" target='_blank'>
                                     <span className="material-icons text-red-500 text-5xl mb-4"><i className="mdi mdi-facebook  top-0 left-1 text-5xl text-[#0866ff]"></i>
