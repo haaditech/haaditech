@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Custom animation for slide-down */
+@layer utilities {
+    @keyframes slide-down {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .animate-slide-down {
+        animation: slide-down 2.0s ease-out forwards;
+    }
+
+    @keyframes slide-up {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-slide-up {
+        animation: slide-up 2.0s ease-out forwards;
+    }
+
+    @keyframes wiggle {
+        100% {
+            opacity: 1;
+        }
+
+        0% {
+            opacity: 0;
+        }
+    }
+
+    .animate-wiggle {
+        animation: wiggle 1.3s ease-in-out;
+        ;
+    }
+}
