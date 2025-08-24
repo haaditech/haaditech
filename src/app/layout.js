@@ -10,6 +10,8 @@ export const metadata = {
     "web development",
     "mobile apps",
     "Haaditech Private Limited",
+    "IT services",
+    "SEO Services India",
   ],
   authors: [{ name: "Haaditech Private Limited" }],
   creator: "Haaditech Private Limited",
