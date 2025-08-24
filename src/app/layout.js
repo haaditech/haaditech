@@ -63,8 +63,21 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="index,follow" />
         <meta property="og:image" content="/placeholder.svg" />
         <meta name="twitter:image" content="/placeholder.svg" />
+
+        {/* Google Tag Manager (head) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWNTZMQH');`,
+          }}
+        />
       </head>
       <body className="justify-center flex">
+        {/* Google Tag Manager (noscript) */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWNTZMQH" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+          }}
+        />
         <AOSInit /> {/* Inject AOS initialization here */}
         {children}
       </body>
