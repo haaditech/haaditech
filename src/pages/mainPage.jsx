@@ -27,7 +27,7 @@ export default function MainPage() {
     };
     return (
         <div className='container'>
-            <CommonHeader/>
+            <CommonHeader />
 
             <div className='items-center justify-center min-h-screen ' id="home">
 
@@ -292,7 +292,9 @@ export default function MainPage() {
                                 <Image className="h-12 w-auto"
                                     priority
                                     src="/haditechlogo.svg"   // ✅ Correct usage with public folder
-                                    alt="Logo of Haadi Tech"
+                                    alt="Haaditech Private Limited"
+                                    width={48}
+                                    height={48}
                                 />
                                 {/* <h4 className="ml-3 text-base/7 font-semibold text-[#004a8f] sm:text-1xl">THINK THE UNTHINKABLE</h4> */}
                                 <div className=''>

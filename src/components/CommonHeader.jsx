@@ -6,9 +6,9 @@ export default function CommonHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("home"); // Track active nav item
 
-   const setDrawerState = (val) => {
+  const setDrawerState = (val) => {
     setIsOpen(val); // Close drawer after navigation (on mobile)
-    document.getElementById('home').style.opacity=val?0.1:1
+    document.getElementById('home').style.opacity = val ? 0.1 : 1
   };
 
   // Function to scroll to a section by ID
@@ -40,13 +40,17 @@ export default function CommonHeader() {
             className="h-12 w-auto"
             priority
             src="/haditechlogo.svg"
-            alt="Logo of Haadi Tech"
+            alt="Haaditech Private Limited"
+            width={48}
+            height={48}
           />
           <Image
             className="h-12 w-auto ml-4 pt-1"
             priority
             src="/Name_Tag_Combined.svg"
-            alt="Tagline Logo"
+            alt="Haaditech Logo"
+            width={160}
+            height={48}
           />
         </div>
 
@@ -65,10 +69,10 @@ export default function CommonHeader() {
             </button>
           ))}
         </div>
-        {/* Contact Us Button (Always visible on desktop, optional on mobile) */} 
-        <div className="hidden md:block"> 
-          {/* <button className="font-bold bg-[#004a8f] hover:bg-[#003366] text-white px-6 py-2 rounded-2xl text-lg"> Contact Us </button> */} 
-          </div>
+        {/* Contact Us Button (Always visible on desktop, optional on mobile) */}
+        <div className="hidden md:block">
+          {/* <button className="font-bold bg-[#004a8f] hover:bg-[#003366] text-white px-6 py-2 rounded-2xl text-lg"> Contact Us </button> */}
+        </div>
 
         {/* Mobile Hamburger Menu */}
         <div className="md:hidden">
@@ -100,8 +104,8 @@ export default function CommonHeader() {
               key={item.id}
               onClick={() => scrollToSection(item.id)}
               className={`w-full text-2xl text-left ${active === item.id
-                  ? "border-b-2 border-white text-white"
-                  : "hover:text-[#003366]"
+                ? "border-b-2 border-white text-white"
+                : "hover:text-[#003366]"
                 }`}
             >
               {item.label}
