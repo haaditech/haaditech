@@ -299,7 +299,7 @@ export default function MainPage() {
                                 {/* <h4 className="ml-3 text-base/7 font-semibold text-[#004a8f] sm:text-1xl">THINK THE UNTHINKABLE</h4> */}
                                 <div className=''>
 
-                                    <p className="text-[#004a8f] font-medium">+91 1234554321</p>
+                                    <p className="text-[#004a8f] font-medium">+91 790 180 8970</p>
                                     <p className="text-[#004a8f] font-normal">2025 © HaadiTech</p>
                                 </div>
                             </div>
