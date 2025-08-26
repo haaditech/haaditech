@@ -187,28 +187,7 @@ export default function MainPage() {
                         </div>
                     </dl>
                 </div>
-                {/* <section className="w-full bg-gray-50 py-16 px-6" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10">
-
-                        <div className="md:w-1/2">
-                            <p className="font-bold text-[#004a8f]">Clients</p>
-                            <h2 className="text-gray-600 mt-2 text-4xl ">What people say about us?</h2>
-
-                            {/* <div className="flex mt-8 space-x-4">
-                                <button className="w-10 h-10 rounded-full bg-[#004a8f] text-white flex items-center justify-center hover:bg-[#00306a] transition">
-                                    ‹
-                                </button>
-                                <button className="w-10 h-10 rounded-full bg-[#004a8f] text-white flex items-center justify-center hover:bg-[#00306a] transition">
-                                    ›
-                                </button>
-                            </div> 
-                        </div>
-                        <div className="md:w-1/2">
-                            <CommonCrousel />
-                        </div>
-                    </div>
-                </section>*/}
+               
                 <div className="bg-gray-50 pb-5" data-aos="fade-up"
                     data-aos-delay="200" id="price">
                     <div className="md:mx-10 text-center">
