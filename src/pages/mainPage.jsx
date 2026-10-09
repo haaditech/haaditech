@@ -1,320 +1,767 @@
 "use client";
-import Image from "next/image";
-import { useEffect } from "react";
-import CommonHeader from "../components/CommonHeader";
+
+import { useEffect, useState } from "react";
 
 export default function MainPage() {
-    useEffect(() => {
-        const button = document.getElementById("scroll-down-btn");
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
-        const handleScroll = () => {
-            if (window.scrollY > 100) {
-                button?.classList.add("opacity-0", "pointer-events-none");
-            } else {
-                button?.classList.remove("opacity-0", "pointer-events-none");
+    /*
+     * ==========================================
+     * REVEAL ON SCROLL
+     * ==========================================
+     */
+    useEffect(() => {
+        // Prevent browser from restoring previous scroll position
+        window.history.scrollRestoration = "manual";
+
+        const reveal = () => {
+            const reveals = document.querySelectorAll(".reveal");
+
+            reveals.forEach((element) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add("active");
+                }
+            });
+        };
+
+        // Same behavior as your original window "load" event
+        const handleLoad = () => {
+            window.scrollTo(0, 0);
+            reveal();
+        };
+
+        // Run immediately in case the page has already loaded
+        if (document.readyState === "complete") {
+            window.scrollTo(0, 0);
+            reveal();
+        } else {
+            window.addEventListener("load", handleLoad);
+        }
+
+        // Listen for scrolling
+        window.addEventListener("scroll", reveal);
+
+        // Cleanup when component unmounts
+        return () => {
+            window.removeEventListener("load", handleLoad);
+            window.removeEventListener("scroll", reveal);
+        };
+    }, []);
+
+    /*
+     * ==========================================
+     * ESC KEY
+     * ==========================================
+     */
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                setDrawerOpen(false);
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
     }, []);
-    // Function to scroll to a section by ID
-    const scrollToSection = (id) => {
-        const section = document.getElementById(id);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
+
+    /*
+     * ==========================================
+     * DRAWER FUNCTIONS
+     * ==========================================
+     */
+
+    const openDrawer = () => {
+        setDrawerOpen(true);
+        document.body.classList.add("drawer-open");
     };
+
+    const closeDrawer = () => {
+        setDrawerOpen(false);
+        document.body.classList.remove("drawer-open");
+    };
+
     return (
-        <div className='container'>
-            <CommonHeader />
+        <>
+            <div className="ambient-background">
+                <div className="glow glow-1"></div>
+                <div className="glow glow-2"></div>
+            </div>
+            <nav className="navbar">
+                <a href="#home" className="brand-logo">
+                    <img
+                        src="https://www.haaditech.com/haditechlogo.svg"
+                        alt="HaadiTech Logo"
+                        className="brand-icon"
+                    />
 
-            <div className='items-center justify-center min-h-screen ' id="home">
+                    <img
+                        src="Name_Tag_Combined_White.svg"
+                        alt="HaadiTech"
+                        className="brand-name"
+                    />
+                </a>
 
-                <div
-                    className="relative md:h-[480] sm:h-[200px] bg-[#004a8f]  bg-center flex text-black animate-wiggle"
+                <div className="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#technologies">Technologies</a>
+                    <a href="#work">Work</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
 
+                <button
+                    className="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded={drawerOpen}
+                    aria-controls="mobileDrawer"
+                    onClick={openDrawer}
                 >
-                    {/* Overlay (optional)style={{
-                        backgroundImage: "url('/assets/img/main-bg-1.jpeg')", // put image in public/assets
+                    <span className="burger-menu-background"></span>
+                    <span className="burger-menu-background"></span>
+                    <span className="burger-menu-background"></span>
+                </button>
+            </nav>
 
-                    }} */}
-                    <div className="relative z-10 text-center text-white flex flex-col w-full items-center px-20 py-50 animate-slide-up">
-                        <div className="flex-1">
-                            <h2 className="text-4xl lg:text-6xl font-bold">Digital Solutions</h2>
+            {/* DRAWER OVERLAY */}
+
+            <div
+                className={`drawer-overlay ${drawerOpen ? "active" : ""}`}
+                id="drawerOverlay"
+                onClick={closeDrawer}
+            />
+
+            {/* MOBILE DRAWER */}
+
+            <aside
+                className={`mobile-drawer ${drawerOpen ? "active" : ""}`}
+                id="mobileDrawer"
+                aria-hidden={!drawerOpen}
+            >
+                <div className="drawer-header">
+                    <span>Menu</span>
+
+                    <button
+                        className="drawer-close"
+                        id="drawerClose"
+                        type="button"
+                        aria-label="Close navigation menu"
+                        onClick={closeDrawer}
+                    >
+                        &times;
+                    </button>
+                </div>
+
+                <div className="drawer-links">
+                    <a href="#home" onClick={closeDrawer}>
+                        Home
+                    </a>
+
+                    <a href="#services" onClick={closeDrawer}>
+                        Services
+                    </a>
+
+                    <a href="#technologies" onClick={closeDrawer}>
+                        Technologies
+                    </a>
+
+                    <a href="#work" onClick={closeDrawer}>
+                        Work
+                    </a>
+
+                    <a href="#pricing" onClick={closeDrawer}>
+                        Pricing
+                    </a>
+                </div>
+            </aside>
+
+            {/* =========================
+          HERO
+      ========================== */}
+
+            <section id="home" className="hero reveal">
+                <h1>
+                    Software...
+                    <br />
+                    Built for You
+                </h1>
+
+                <p>
+                    We craft custom, scalable, and high-performance software
+                    solutions tailored to solve the unique challenges of your
+                    business.
+                </p>
+                <a href="#work" className="btn">
+                    Explore Our Work
+                </a>
+            </section>
+
+            {/* <section id="intro" className="hero reveal">
+                <h1>
+                    Bring Your Ideas
+                    <br />
+                    to Life.
+                </h1>
+
+                <p>
+                    Innovative digital solutions for startups and enterprises.
+                </p>
+
+                <a href="#work" className="btn">
+                    Explore Our Work
+                </a>
+            </section> */}
+
+            {/* =========================
+          SERVICES
+      ========================== */}
+
+            <section id="services">
+                <h2 className="section-title reveal">How We Work</h2>
+
+                <p className="section-subtitle reveal">
+                    We are a leading software development company dedicated to
+                    helping businesses and individuals bring their ideas to life
+                    through innovative digital solutions.
+                </p>
+
+                <div className="grid-2">
+                    <div className="card reveal delay-1">
+                        <h3>User Experience</h3>
+
+                        <p>
+                            Whether you're launching a startup, modernizing an
+                            existing platform, or building a cross-platform
+                            mobile application, our expert team is here to turn
+                            your vision into reality.
+                        </p>
+                    </div>
+
+                    <div className="card reveal delay-2">
+                        <h3>Development</h3>
+
+                        <p>
+                            Our core services include custom website development
+                            and the creation of powerful web applications
+                            tailored for Android, iOS, and web platforms.
+                        </p>
+                    </div>
+
+                    <div className="card reveal delay-3">
+                        <h3>Scalability</h3>
+
+                        <p>
+                            With a strong focus on performance, scalability, and
+                            user experience, we deliver end-to-end solutions
+                            that are both visually compelling and functionally
+                            robust.
+                        </p>
+                    </div>
+
+                    <div className="card reveal delay-4">
+                        <h3>Security</h3>
+
+                        <p>
+                            Our platform ensures enterprise-grade security
+                            tailored to the needs of business users. We
+                            prioritize data protection and privacy, giving our
+                            clients the security they need to operate with
+                            confidence.
+                        </p>
+                    </div>
+
+                    <div className="card reveal delay-5">
+                        <h3>Innovation</h3>
+
+                        <p>
+                            We combine modern technologies, creative thinking,
+                            and proven development practices to build digital
+                            products that keep your business ahead of the
+                            competition.
+                        </p>
+                    </div>
+
+                    <div className="card reveal delay-6">
+                        <h3>Support & Maintenance</h3>
+
+                        <p>
+                            Our relationship doesn't end after launch. We
+                            provide ongoing maintenance, updates, monitoring,
+                            and technical support to keep your software reliable
+                            and up to date.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* =========================
+          TECHNOLOGIES
+      ========================== */}
+
+            <section id="technologies">
+                <h2 className="section-title reveal">Our TechStack</h2>
+
+                <div className="services-list reveal delay-1">
+                    <span className="tag">Web Development</span>
+                    <span className="tag">App Development</span>
+                    <span className="tag">SEO</span>
+                    <span className="tag">IT Consultancy</span>
+                </div>
+
+                <h2 className="section-title reveal tech-stack-title">
+                    Our Tech-Stack
+                </h2>
+
+                <div className="grid-2 tech-stack-grid reveal delay-2">
+                    {/* App Development */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>App Development</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">React Native</span>
+                                <span className="tag">Flutter</span>
+                                <span className="tag">Android</span>
+                                <span className="tag">iOS</span>
+                            </div>
                         </div>
-                        <div>
-                            <p className="mt-4 text-2xl mx-auto">
-                                We design and build fast, secure, and scalable websites and mobile applications tailored to your business goals.
+                    </div>
+
+                    {/* Web Development */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>Web Development</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">JavaScript</span>
+                                <span className="tag">TypeScript</span>
+                                <span className="tag">Angular.js</span>
+                                <span className="tag">React.js</span>
+                                <span className="tag">Vue.js</span>
+                                <span className="tag">Java</span>
+                                <span className="tag">PHP</span>
+                                <span className="tag">Laravel</span>
+                                <span className="tag">WordPress</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Backend */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>Backend & APIs</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">Node.js</span>
+                                <span className="tag">Express.js</span>
+                                <span className="tag">REST APIs</span>
+                                <span className="tag">PHP</span>
+                                <span className="tag">Laravel</span>
+                                <span className="tag">Java</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Databases */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>Databases</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">MySQL</span>
+                                <span className="tag">PostgreSQL</span>
+                                <span className="tag">MongoDB</span>
+                                <span className="tag">Firebase</span>
+                                <span className="tag">Redis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Cloud */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>Cloud & DevOps</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">AWS</span>
+                                <span className="tag">Google Cloud</span>
+                                <span className="tag">Docker</span>
+                                <span className="tag">Git</span>
+                                <span className="tag">GitHub</span>
+                                <span className="tag">CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CMS */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>CMS & E-Commerce</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">WordPress</span>
+                                <span className="tag">WooCommerce</span>
+                                <span className="tag">Shopify</span>
+                                <span className="tag">Laravel</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SEO */}
+
+                    <div className="card tech-card">
+                        <div className="tech-category">
+                            <h4>SEO & Digital</h4>
+
+                            <div className="services-list tech-tags">
+                                <span className="tag">Technical SEO</span>
+                                <span className="tag">Google Analytics</span>
+                                <span className="tag">
+                                    Google Search Console
+                                </span>
+                                <span className="tag">Google Tag Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* =========================
+          PROJECTS
+      ========================== */}
+
+            <section id="work" className="projects-section">
+                <h2 className="section-title reveal">Our Completed Projects</h2>
+
+                <p className="section-subtitle reveal">
+                    From business websites to service-based platforms, we build
+                    modern, responsive, and high-performance digital experiences
+                    for businesses across different industries.
+                </p>
+
+                <div className="grid-2">
+                    {/* VSFrame */}
+
+                    <div className="card project-card reveal delay-1">
+                        <div className="project-card-content">
+                            <div className="project-location">
+                                <span className="flag">🍁</span>
+                                <span>Canada</span>
+                            </div>
+
+                            <span className="project-category">
+                                Construction & Carpentry
+                            </span>
+
+                            <h3>VSFrame Construction</h3>
+
+                            <p>
+                                A professional website for a Metro Vancouver
+                                construction company specializing in custom
+                                decks, structural framing, drywall, and handyman
+                                services.
+                            </p>
+
+                            <a
+                                href="https://www.vsframe.ca/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                            >
+                                Visit Website →
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Advanced Healing Massage */}
+
+                    <div className="card project-card reveal delay-2">
+                        <div className="project-card-content">
+                            <div className="project-location">
+                                <span className="flag">🍁</span>
+                                <span>Canada</span>
+                            </div>
+
+                            <span className="project-category">
+                                Health & Wellness
+                            </span>
+
+                            <h3>Advanced Healing Massage</h3>
+
+                            <p>
+                                A modern therapy and massage website for a
+                                Calgary-based wellness center, featuring
+                                treatment services, massage packages,
+                                appointment booking, and service information.
+                            </p>
+
+                            <a
+                                href="https://ahml.ca/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                            >
+                                Visit Website →
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* ARB Technologies */}
+
+                    <div className="card project-card reveal delay-3">
+                        <div className="project-card-content">
+                            <div className="project-location">
+                                <span className="flag">🦘</span>
+                                <span>Australia</span>
+                            </div>
+
+                            <span className="project-category">Technology</span>
+
+                            <h3>ARB Technologies Australia</h3>
+
+                            <p>
+                                A professional digital presence developed for
+                                ARB Technologies Australia, designed to showcase
+                                the company and its technology-focused services.
+                            </p>
+
+                            <a
+                                href="https://www.arbittech.com.au/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                            >
+                                Visit Website →
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Melbourne Silver Taxi */}
+
+                    <div className="card project-card reveal delay-4">
+                        <div className="project-card-content">
+                            <div className="project-location">
+                                <span className="flag">🦘</span>
+                                <span>Australia</span>
+                            </div>
+
+                            <span className="project-category">
+                                Transportation
+                            </span>
+
+                            <h3>Melbourne Silver Taxi</h3>
+
+                            <p>
+                                A responsive taxi booking website for Melbourne,
+                                featuring airport transfers, local and
+                                long-distance rides, fleet information, booking
+                                options, and service details.
+                            </p>
+
+                            <a
+                                href="https://www.melbournesilvertaxii.com.au/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                            >
+                                Visit Website →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* =========================
+          PRICING
+      ========================== */}
+
+            <section id="pricing">
+                <h2 className="section-title reveal">Our Prices</h2>
+
+                <p className="section-subtitle reveal">
+                    Transparent pricing tailored to your scale—from basic setups
+                    to enterprise platforms.
+                </p>
+                <div className="mb-10">
+
+                    <div style={{ textAlign: "center" }}>
+                        <a href="/calculator" className="btn">
+                            Open Calculator →
+                        </a>
+                    </div>
+                </div>
+
+                <div className="pricing-section reveal delay-2">
+                    <h3>Website Development</h3>
+
+                    <div className="grid-3">
+                        <div className="card price-card">
+                            <h4>Portfolio</h4>
+
+                            <div className="price">$99</div>
+
+                            <p className="desc">Up to 5 Pages</p>
+                        </div>
+
+                        <div className="card price-card highlight">
+                            <h4>Small Business</h4>
+
+                            <div className="price">$499</div>
+
+                            <p className="desc">Up to 15 Pages</p>
+                        </div>
+
+                        <div className="card price-card">
+                            <h4>Customized</h4>
+
+                            <div className="price">$799</div>
+
+                            <p className="desc">Up to 35 Pages</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* App Pricing */}
+
+                <div className="pricing-section reveal delay-3">
+                    <h3>App Development</h3>
+
+                    <div className="grid-3">
+                        <div className="card price-card">
+                            <h4>Basic</h4>
+
+                            <div className="price">$999 - $1,999</div>
+
+                            <p className="desc">
+                                Simple App. Includes basic features and core MVP
+                                functionality.
+                            </p>
+                        </div>
+
+                        <div className="card price-card highlight">
+                            <h4>Team</h4>
+
+                            <div className="price">$2,999 - $3,999</div>
+
+                            <p className="desc">
+                                Medium Complexity. Includes chat, payments, and
+                                standard dashboards.
+                            </p>
+                        </div>
+
+                        <div className="card price-card">
+                            <h4>Enterprise</h4>
+
+                            <div className="price">$4,999 - $6,000+</div>
+
+                            <p className="desc">
+                                Complex App. Includes marketplace logic,
+                                real-time features, and multi-platform support.
                             </p>
                         </div>
                     </div>
-                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 z-40" id="work">
-
-                        <button id="scroll-down-btn" onClick={() => scrollToSection('work')} type="button" className="animate-bounce cursor-pointer flex items-center gap-x-1 font-bold bg-gray-300  text-[#004a8f] w-15 h-15 rounded-4xl  text-center justify-center text-lg" aria-expanded="false">
-                            <i className="mdi mdi-arrow-down text-4xl"></i>
-                        </button>
-                    </div>
-
-                    {/* Animated Text Content */}
-                    {/* <div className="relative z-10 text-left px-4 py-90 w-100 animate-slide-up">
-                        <h2 className="text-4xl md:text-5xl font-bold">Digital Solutions</h2>
-                        <p className="mt-4 text-md mx-auto">
-                           We design and build fast, secure, and scalable websites and mobile applications tailored to your business goals.
-                        </p>
-                    </div> */}
                 </div>
-                <div className="bg-gray-50 pb-5 rounded-top-xl " data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div className="mx-10 text-center" >
+            </section>
 
-                        {/* <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">A better workflow</p> */}
-                        <h2 className="pt-3 md:text-4xl sm:text-3xl text-[#004a8f]">We are a leading software development company dedicated to helping businesses and individuals bring their ideas to life through innovative digital solutions.</h2>
+            {/* =========================
+          FOOTER
+      ========================== */}
 
+            <footer>
+                <div className="footer-col">
+                    <h4>HaadiTech.</h4>
 
-                    </div>
-                    <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 text-center lg:max-w-none pa-5 opacity-[0.9]">
-                        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:[grid-rows-4] pb-5 gap-4 flex justify-center">
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-account-group top-0 left-1 text-5xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">User Experince</h3>
-                                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                                <p className="text-gray-600 text-sm">Whether you're launching a startup, modernizing an existing platform, or building a cross-platform mobile application, our expert team is here to turn your vision into reality.</p>
-                            </div>
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-monitor-cellphone-star top-0 left-1 text-5xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">Development</h3>
-                                <p className="text-gray-600 text-sm">Our core services include custom website development and the creation of powerful web applications tailored for Android, iOS, and web platforms.</p>
-                            </div>
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-finance top-0 left-1 text-5xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">Scalability</h3>
-                                <p className="text-gray-600 text-sm">With a strong focus on performance, scalability, and user experience, we deliver end-to-end solutions that are both visually compelling and functionally robust.</p>
-                            </div>
-                            <div id="services" className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-account-lock-outline  top-0 left-1 text-5xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">Security</h3>
-                                <p className="text-gray-600 text-sm">Our platform ensures enterprise-grade security tailored to the needs of business users. We prioritize data protection and privacy, giving our business users the security they need to operate with confidence.</p>
-                            </div>
-
-                        </div>
-                    </dl>
+                    <p>
+                        Empowering businesses globally with next-generation
+                        digital solutions, unmatched security, and infinite
+                        scalability.
+                    </p>
                 </div>
 
-                <div className="bg-gray-100 pb-5" data-aos="fade-up"
-                    data-aos-delay="200"  >
-                    <div className="md:mx-10 text-center">
-                        <h1 className="pt-3 text-2xl lg:text-4xl sm:text-2xl text-[#004a8f] border-b-2 pb-2 border-[#004a8f] font-semibold">Our Services</h1>
-                    </div>
-                    <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 text-center lg:max-w-none pa-5 opacity-[0.9]">
-                        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:[grid-rows-4] gap-4 flex justify-center lg:justify-start pb-5">
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
+                <div className="footer-col">
+                    <h4>Quick Links</h4>
 
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">Web Development</h3>
-                            </div>
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">App Development</h3>
-                            </div>
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-speedometer top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">SEO</h3>
-                            </div>
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-64 p-6 text-center hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-account-box-outline  top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">IT Consultancy</h3>
-                            </div>
-
-                        </div>
-                    </dl>
-                    <div className="md:mx-10 text-center">
-                        <h1 className="pt-3 text-2xl lg:text-4xl sm:text-2xl text-[#004a8f] border-b-2 pb-2 border-[#004a8f] font-semibold">Our Tech-Stack</h1>
-                    </div>
-                    <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 flex justify-center lg:justify-start lg:max-w-none pa-5 opacity-[0.9]">
-                        <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:[grid-rows-4] gap-6 pb-5">
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 text-6xl text-[#004a8f]"></i>
-                                </span>
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-2">App Development</h3>
-                                <ul className="space-y-2">
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        React Native
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-2">Website Development</h3>
-                                <ul className="space-y-2">
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Angular Js
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        React Js
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Vue Js
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        PHP (Wordpress,Laravel)
-                                    </li>
-                                </ul>
-
-                            </div>
-
-                        </div>
-                    </dl>
-                </div>
-               
-                <div className="bg-gray-50 pb-5" data-aos="fade-up"
-                    data-aos-delay="200" id="price">
-                    <div className="md:mx-10 text-center">
-                        <h1 className="pt-3 text-2xl lg:text-4xl sm:text-2xl text-[#004a8f] border-b-2 pb-2 border-[#004a8f] font-semibold" >Our Prices</h1>
-                    </div>
-                    <dl className="mt-10 mx-10 max-w-2xl md:flex md:justify-center space-y-8 text-base/7 text-gray-600 flex justify-center lg:justify-start lg:max-w-none pa-5 opacity-[0.9]">
-
-                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:[grid-rows-4] gap-6 pb-5">
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-speedometer top-0 text-6xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">Website SEO</h3>
-                                <ul className="space-y-2">
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Basic SEO: $250</li>
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Standard SEO: $500</li>
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Advanced SEO: $700</li>
-
-                                </ul>
-
-                            </div>
-
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-web top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-2">Website Development</h3>
-                                <ul className="space-y-2">
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Upto 5 Pages  $399/Month
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Upto 15 Pages $1399/Month
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Upto 25 Pages $1899/Month
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>
-                                        Upto 35 Pages $4777/Month
-                                    </li>
-                                </ul>
-
-                            </div>
-
-                            <div className="bg-white border border-gray-300 rounded-xl shadow-md w-80 p-6 hover:shadow-xl hover:bg-[#ffffff] transition-transform duration-300 hover:scale-105">
-                                <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-cellphone top-0 left-1 text-6xl text-[#004a8f]"></i>
-                                </span>
-
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">App Development</h3>
-                                <ul className="space-y-2">
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span> Simple app (basic features, MVP): $5,000 – $8,000
-                                    </li>
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span>Medium complexity app (chat, payments, dashboards): $8,000 – $15,000
-                                    </li>
-                                    <li className="flex">
-                                        <span className="text-[#004a8f]"><i className="mdi mdi-check text-2xl"></i></span> Complex app (marketplace, real-time features, multi-platform): $15,000 – $30,000+
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </dl>
+                    <a href="#work">Our Work</a>
+                    <a href="#services">Services</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#">Careers</a>
                 </div>
 
+                <div className="footer-col">
+                    <h4>Connect</h4>
 
-                <footer className="bg-gray-100 bg-gray-100 border-t-1 rounded-b-xl border-[#004a8f] px-6 py-2">
-                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-8 justify-center items-center">
+                    <a
+                        href="https://www.linkedin.com/in/haaditech"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        LinkedIn
+                    </a>
 
-                        <div className="md:w-1/2 py-5">
-                            <div className="flex flex-cols-2 space-x-5">
-                                <Image className="h-12 w-auto"
-                                    priority
-                                    src="/haditechlogo.svg"   // ✅ Correct usage with public folder
-                                    alt="Haaditech Private Limited"
-                                    width={48}
-                                    height={48}
-                                />
-                                {/* <h4 className="ml-3 text-base/7 font-semibold text-[#004a8f] sm:text-1xl">THINK THE UNTHINKABLE</h4> */}
-                                <div className=''>
+                    <a
+                        href="https://www.facebook.com/haaditechpvtltd/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Facebook
+                    </a>
 
-                                    <p className="text-[#004a8f] font-medium">+91 790 180 8970</p>
-                                    <p className="text-[#004a8f] font-normal">2025 © HaadiTech</p>
-                                </div>
-                            </div>
-                            {/* <p className="text-[#004a8f]">2025 © HaadiTech</p> */}
-                        </div>
+                    <a
+                        href="https://www.instagram.com/haaditech.pvt.ltd/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Instagram
+                    </a>
+                </div>
 
-                        <div className="hidden md:flex w-full justify-end grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div className="p-6 text-center col-span-0">
-                                <a href="https://www.facebook.com/haaditechpvtltd/" target='_blank'>
-                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-facebook  top-0 left-1 text-5xl text-[#0866ff]"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="p-6 text-center">
-                                <a href="https://www.linkedin.com/in/haaditech/" target='_blank'>
-                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-linkedin  top-0 left-1 text-5xl text-[#0073b2]"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="p-6 text-center">
-                                <a href="https://www.instagram.com/haaditech.pvt.ltd/" target='_blank'>
-                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-instagram  top-0 left-1 text-5xl text-[#fe1984]"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="p-6 text-center">
-                                <a href="#" target='_blank'>
-                                    <span className=" text-red-500 text-5xl mb-4"><i className="mdi mdi-whatsapp  top-0 left-1 text-5xl text-[#25d366]"></i>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
+                <div className="footer-col">
+                    <h4>Contact</h4>
 
-                    </div>
-                </footer>
-            </div>
-        </div>
+                    <p>
+                        Email:{" "}
+                        <a href="mailto:info@HaadiTech.com">
+                            info@HaadiTech.com
+                        </a>
+                    </p>
+
+                    <p>
+                        Phone: <a href="tel:+917901808970">+91 790 180 8970</a>
+                    </p>
+
+                    <br />
+
+                    <h4>Address</h4>
+
+                    <p>
+                        HaadiTech Pvt Ltd
+                        <br />
+                        4th Floor
+                        <br />
+                        NH-8, Ambience Island, Sector 24, DLF Phase 3, Gurugram,
+                        Haryana
+                        <br />
+                        India 122002
+                    </p>
+                </div>
+
+                <div className="footer-bottom">
+                    <p>&copy; 2026 HaadiTech Solutions. All rights reserved.</p>
+                </div>
+            </footer>
+        </>
     );
 }

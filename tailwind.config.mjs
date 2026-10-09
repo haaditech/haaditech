@@ -1,23 +1,12 @@
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      animation: {
-        slideDown: 'slideDown 2s ease-in forwards',
-      },
-      keyframes: {
-
-        slideDown: {
-          '0%': { opacity: '0', transform: 'translateY(-40px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-
-    },
+    extend: {},
   },
   plugins: [],
 };
