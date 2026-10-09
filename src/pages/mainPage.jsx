@@ -89,6 +89,10 @@ export default function MainPage() {
 
     return (
         <>
+            <div class="ambient-background">
+                <div class="glow glow-1"></div>
+                <div class="glow glow-2"></div>
+            </div>
             <nav className="navbar">
                 <a href="#home" className="brand-logo">
                     <img
@@ -98,7 +102,7 @@ export default function MainPage() {
                     />
 
                     <img
-                        src="https://www.haaditech.com/Name_Tag_Combined.svg"
+                        src="Name_Tag_Combined_White.svg"
                         alt="HaadiTech"
                         className="brand-name"
                     />
@@ -120,9 +124,9 @@ export default function MainPage() {
                     aria-controls="mobileDrawer"
                     onClick={openDrawer}
                 >
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span className="burger-menu-background"></span>
+                    <span className="burger-menu-background"></span>
+                    <span className="burger-menu-background"></span>
                 </button>
             </nav>
 
@@ -194,9 +198,12 @@ export default function MainPage() {
                     solutions tailored to solve the unique challenges of your
                     business.
                 </p>
+                <a href="#work" className="btn">
+                    Explore Our Work
+                </a>
             </section>
 
-            <section className="hero reveal">
+            {/* <section id="intro" className="hero reveal">
                 <h1>
                     Bring Your Ideas
                     <br />
@@ -210,7 +217,7 @@ export default function MainPage() {
                 <a href="#work" className="btn">
                     Explore Our Work
                 </a>
-            </section>
+            </section> */}
 
             {/* =========================
           SERVICES
@@ -588,8 +595,14 @@ export default function MainPage() {
                     Transparent pricing tailored to your scale—from basic setups
                     to enterprise platforms.
                 </p>
+                <div className="mb-10">
 
-                {/* Website Pricing */}
+                    <div style={{ textAlign: "center" }}>
+                        <a href="/calculator" className="btn">
+                            Open Calculator →
+                        </a>
+                    </div>
+                </div>
 
                 <div className="pricing-section reveal delay-2">
                     <h3>Website Development</h3>
