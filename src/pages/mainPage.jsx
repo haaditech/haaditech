@@ -89,9 +89,9 @@ export default function MainPage() {
 
     return (
         <>
-            <div class="ambient-background">
-                <div class="glow glow-1"></div>
-                <div class="glow glow-2"></div>
+            <div className="ambient-background">
+                <div className="glow glow-1"></div>
+                <div className="glow glow-2"></div>
             </div>
             <nav className="navbar">
                 <a href="#home" className="brand-logo">

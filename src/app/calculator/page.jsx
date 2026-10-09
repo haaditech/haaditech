@@ -116,6 +116,7 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
     { name: "Services", href: "#services" },
     { name: "Hosting", href: "#hosting" },
     { name: "Terms", href: "#terms" },
+    { name: "Home", href: "/" },
   ];
 
   const openDrawer = () => {
