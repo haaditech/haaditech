@@ -180,10 +180,6 @@ export default function Contact() {
   };
 
   const navLinks = [
-    { name: "Calculator", href: "#calculator" },
-    { name: "Services", href: "#services" },
-    { name: "Hosting", href: "#hosting" },
-    { name: "Terms", href: "#terms" },
     { name: "Home", href: "/" },
   ];
 
