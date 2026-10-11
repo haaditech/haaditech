@@ -113,6 +113,7 @@ export default function MainPage() {
                     <a href="#technologies">Technologies</a>
                     <a href="#work">Work</a>
                     <a href="#pricing">Pricing</a>
+                    <a href="/contactUs">Contact Us</a>
                 </div>
 
                 <button
@@ -178,6 +179,10 @@ export default function MainPage() {
 
                     <a href="#pricing" onClick={closeDrawer}>
                         Pricing
+                    </a>
+
+                    <a href="/contactUs" onClick={closeDrawer}>
+                        Contact Us
                     </a>
                 </div>
             </aside>

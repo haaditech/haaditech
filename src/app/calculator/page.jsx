@@ -47,7 +47,7 @@ export default function App() {
   };
 
   const updateNumber = (value, setter, max) => {
-    const parsed = Number.parseInt(value, 10);
+    const parsed = Number.parseFloat(value, 10);
     setter(
       value === ""
         ? ""
@@ -158,7 +158,7 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
           </a>
 
           <div className="nav-links">
-          {navLinks.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -168,7 +168,6 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
                 {link.name}
               </a>
             ))}
-           
           </div>
 
           <button
@@ -226,7 +225,6 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
                 {link.name}
               </a>
             ))}
-            
           </div>
         </aside>
 
@@ -250,7 +248,7 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
         <section id="calculator" className="scroll-mt-24 mb-16">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              Interactive Pricing Calculator
+              Budget Friendly Pricing
             </h2>
             <p className="text-slate-400 text-sm mt-1">
               Select your requirements to estimate one-time development and
@@ -549,7 +547,12 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
                     </strong>
                   </div>
                   <div className="flex justify-between text-slate-300">
-                    <span>Hosting Charges:</span>
+                    <span>
+                      {hostingType === "yearly"
+                        ? `${years} Year(s) Hosting Charges:`
+                        : `${months} Month(s) Hosting Charges:`}
+                    </span>
+                    {/* <span>{hostingType == "yearly"} Hosting Charges:</span> */}
                     <strong className="text-slate-100">
                       {formatCurrency(totalHosting)}
                     </strong>
@@ -836,87 +839,82 @@ Advance Required (30% of development): ${formatCurrency(advance)}`;
         </section>
 
         <footer>
-                <div className="footer-col">
-                    <h4>HaadiTech.</h4>
+          <div className="footer-col">
+            <h4>HaadiTech.</h4>
 
-                    <p>
-                        Empowering businesses globally with next-generation
-                        digital solutions, unmatched security, and infinite
-                        scalability.
-                    </p>
-                </div>
+            <p>
+              Empowering businesses globally with next-generation digital
+              solutions, unmatched security, and infinite scalability.
+            </p>
+          </div>
 
-                <div className="footer-col">
-                    <h4>Quick Links</h4>
+          <div className="footer-col">
+            <h4>Quick Links</h4>
 
-                    <a href="/#work">Our Work</a>
-                    <a href="/#services">Services</a>
-                    <a href="/#pricing">Pricing</a>
-                    <a href="/#">Careers</a>
-                </div>
+            <a href="/#work">Our Work</a>
+            <a href="/#services">Services</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="/#">Careers</a>
+          </div>
 
-                <div className="footer-col">
-                    <h4>Connect</h4>
+          <div className="footer-col">
+            <h4>Connect</h4>
 
-                    <a
-                        href="https://www.linkedin.com/in/haaditech"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        LinkedIn
-                    </a>
+            <a
+              href="https://www.linkedin.com/in/haaditech"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
 
-                    <a
-                        href="https://www.facebook.com/haaditechpvtltd/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Facebook
-                    </a>
+            <a
+              href="https://www.facebook.com/haaditechpvtltd/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook
+            </a>
 
-                    <a
-                        href="https://www.instagram.com/haaditech.pvt.ltd/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Instagram
-                    </a>
-                </div>
+            <a
+              href="https://www.instagram.com/haaditech.pvt.ltd/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </a>
+          </div>
 
-                <div className="footer-col">
-                    <h4>Contact</h4>
+          <div className="footer-col">
+            <h4>Contact</h4>
 
-                    <p>
-                        Email:{" "}
-                        <a href="mailto:info@HaadiTech.com">
-                            info@HaadiTech.com
-                        </a>
-                    </p>
+            <p>
+              Email: <a href="mailto:info@HaadiTech.com">info@HaadiTech.com</a>
+            </p>
 
-                    <p>
-                        Phone: <a href="tel:+917901808970">+91 790 180 8970</a>
-                    </p>
+            <p>
+              Phone: <a href="tel:+917901808970">+91 790 180 8970</a>
+            </p>
 
-                    <br />
+            <br />
 
-                    <h4>Address</h4>
+            <h4>Address</h4>
 
-                    <p>
-                        HaadiTech Pvt Ltd
-                        <br />
-                        4th Floor
-                        <br />
-                        NH-8, Ambience Island, Sector 24, DLF Phase 3, Gurugram,
-                        Haryana
-                        <br />
-                        India 122002
-                    </p>
-                </div>
+            <p>
+              HaadiTech Pvt Ltd
+              <br />
+              4th Floor
+              <br />
+              NH-8, Ambience Island, Sector 24, DLF Phase 3, Gurugram, Haryana
+              <br />
+              India 122002
+            </p>
+          </div>
 
-                <div className="footer-bottom">
-                    <p>&copy; 2026 HaadiTech Solutions. All rights reserved.</p>
-                </div>
-            </footer>
+          <div className="footer-bottom">
+            <p>&copy; 2026 HaadiTech Solutions. All rights reserved.</p>
+          </div>
+        </footer>
       </div>
     </main>
   );
