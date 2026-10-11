@@ -211,8 +211,7 @@ export default function Contact() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-10">
-
-      <nav className="navbar">
+        <nav className="navbar">
           <a href="/" className="brand-logo">
             <img
               src="haditechlogo.svg"
@@ -685,3 +684,4 @@ export default function Contact() {
     </main>
   );
 }
+
